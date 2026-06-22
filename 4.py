@@ -12,12 +12,11 @@ def enrich(prompt, keyword):
     return prompt.replace(keyword, similar(keyword))
 
 def generate(prompt):
-    out = gen(prompt, min_new_tokens = 100,max_new_tokens=120, do_sample=True,        # ← was 50
+    out = gen(prompt, min_new_tokens = 100,max_new_tokens=120, do_sample=True,      
               temperature=0.85, top_p=0.9, repetition_penalty=1.2,
               return_full_text=True)[0]["generated_text"]
     text = " ".join(out.split())
 
-    # ← NEW: trim to the last complete sentence
     last_end = max(text.rfind('.'), text.rfind('!'), text.rfind('?'))
     if last_end != -1:
         text = text[:last_end + 1]
