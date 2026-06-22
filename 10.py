@@ -22,3 +22,17 @@ while True:
     res = llm.invoke(prompt)
 
     print("\nAnswer:\n", res.content)
+
+
+
+prompt = f"""
+You are an assistant that answers ONLY from the following IPC document.
+
+If the answer exists in the document, answer directly.
+If it does not exist, reply "Information not found."
+
+Document:
+{ipc_text}
+
+Question: {q}
+"""
